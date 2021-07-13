@@ -15,6 +15,7 @@ class SemakanController extends Controller
     public function index()
     {
         $senaraiPermohonan = Permohonan::where('harga_belian', '>', 0)
+        ->latest()
         ->paginate(2);
 
         return view('semakan/template_list_semakan', compact('senaraiPermohonan'));
@@ -91,8 +92,10 @@ class SemakanController extends Controller
      */
     public function edit($id)
     {
-        // Dapatkan data daripad table permohonan berdasarkan ID dan limit 1
+        // Dapatkan data daripada table permohonan berdasarkan ID dan limit 1
         // rekod sahaja
+        // Penggunaan find() hanya boleh digunakan pada carian ID
+        // $item = Permohonan::where('nama_pemohon', '=', 'John Doe')->first();
         $item = Permohonan::find($id);
         // $item = Permohonan::findOrFail($id);
 

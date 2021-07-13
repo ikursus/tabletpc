@@ -13,6 +13,7 @@ class Permohonan extends Model
     // protected $table = 'permohonan';
 
     protected $fillable = [
+        'user_id',
         'nama_pemohon',
         'jawatan_pemohon',
         'gred_pemohon',
@@ -21,4 +22,21 @@ class Permohonan extends Model
         'harga_belian',
         'tarikh_belian'
     ];
+
+    // Dapatkan data nama_pemohon dan paparkan semua dalam HURUF BESAR
+    public function getNamaPemohonAttribute($value)
+    {
+        return strtoupper($value);
+    }
+
+    public function setJawatanPemohonAttribute($value)
+    {
+        $this->attributes['jawatan_pemohon'] = strtoupper($value);
+    }
+
+    public function user()
+    {
+        // return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
+    }
 }

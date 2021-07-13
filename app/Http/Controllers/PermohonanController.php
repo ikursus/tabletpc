@@ -13,10 +13,14 @@ class PermohonanController extends Controller
         // $senaraiPermohonan = DB::table('permohonan')->get();
         // Fungsi Pagination - limitkan data dipaparkan pada 1 page
         // $senaraiPermohonan = DB::table('permohonan')->paginate(2);
-        $senaraiPermohonan = DB::table('permohonans')
-        ->where('harga_belian', '>', 0)
-        ->paginate(2);
+        // $senaraiPermohonan = DB::table('permohonans')
+        // ->where('harga_belian', '>', 0)
+        // ->paginate(2);
         // dd($senaraiPermohonan);
+        $senaraiPermohonan = DB::table('permohonans')
+        ->join('users', 'permohonans.user_id', '=', 'users.id')
+        ->select('permohonans.*', 'users.name')
+        ->paginate(2);
 
         return view('template_permohonan/senarai', compact('senaraiPermohonan'));
     }

@@ -504,6 +504,7 @@ class ComposerStaticInit95bb696836bbdda560b48e76170bc85b
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/LoginController.php',
+        'App\\Http\\Controllers\\OrderController' => __DIR__ . '/../..' . '/app/Http/Controllers/OrderController.php',
         'App\\Http\\Controllers\\PermohonanController' => __DIR__ . '/../..' . '/app/Http/Controllers/PermohonanController.php',
         'App\\Http\\Controllers\\SemakanController' => __DIR__ . '/../..' . '/app/Http/Controllers/SemakanController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',

@@ -8,6 +8,7 @@
 
     <table class="table">
         <thead>
+            <th>PENGIRIM BORANG</th>
             <th>NAMA PEMOHON</th>
             <th>JAWATAN PEMOHON</th>
             <th>JABATAN PEMOHON</th>
@@ -19,6 +20,7 @@
         <tbody>
             @foreach($senaraiPermohonan as $item)
             <tr>
+                <td>{{ $item->user->name }}</td>
                 <td>{{ $item->nama_pemohon }}</td>
                 <td>{{ $item->jawatan_pemohon }}</td>
                 <td>{{ $item->jabatan_pemohon }}</td>
