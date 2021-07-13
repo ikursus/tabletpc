@@ -10,7 +10,8 @@
 
     <h1>Halaman Login</h1>
 
-    <form>
+    <form method="POST" action="">
+        @csrf
         <div>
             <label>Email</label>
             <input type="email" name="email">

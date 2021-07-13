@@ -4,6 +4,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PermohonanController;
 use App\Http\Controllers\SemakanController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,13 +17,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/install', function () {
+    Artisan::call('migrate', ['--force' => true, '--seed' => true]);
+});
+
 Route::get('/', function () {
     // return view('welcome');
     return 'Selamat Datang Ke Laravel';
 });
 
 // Route::get($uri, $function);
-Route::get('login', [LoginController::class, 'paparBorangLogin']);
+Route::get('login', [LoginController::class, 'paparBorangLogin'])->name('login');
+Route::post('login', [LoginController::class, 'semakLogin'])->name('semak.login');
+Route::get('signout', [LoginController::class, 'logout']);
 
 Route::get('dashboard', function () {
     return 'Ini adalah halaman dashboard';
@@ -39,7 +46,7 @@ Route::get('permohonan/{id}', [PermohonanController::class, 'edit'])->where('id'
 Route::patch('permohonan/{id}', [PermohonanController::class, 'update']);
 Route::delete('permohonan/{id}', [PermohonanController::class, 'destroy']);
 
-Route::group(['prefix' => 'semakan'], function() {
+Route::group(['prefix' => 'semakan', 'middleware' => 'auth'], function() {
 
     // Route standard untuk proses CRUD (Create Read Update Delete)
     Route::get('/', [SemakanController::class, 'index']);
