@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PermohonanController;
+use App\Http\Controllers\SemakanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,26 +39,15 @@ Route::get('permohonan/{id}', [PermohonanController::class, 'edit'])->where('id'
 Route::patch('permohonan/{id}', [PermohonanController::class, 'update']);
 Route::delete('permohonan/{id}', [PermohonanController::class, 'destroy']);
 
-
-
 Route::group(['prefix' => 'semakan'], function() {
 
-    Route::get('/', function () {
-        // return 'Ini adalah halaman semakan';
-        return view('semakan/template_list_semakan');
-    });
-    
-    Route::get('/{id}', function ($id) {
-        // return 'Ini adalah halaman semakan permohonan ID: ' . $id;
-        $page_title = 'Halaman Semakan';
-        //return view('semakan/template_detail_semakan');
-        // return view('semakan/template_detail_semakan')->with('id', $id)->with('page_title', $page_title);
-        // return view('semakan/template_detail_semakan', ['id' => $id, 'page_title' => $page_title]);
-
-        $input_nama = '<input type="text" name="nama">';
-
-        return view('semakan/template_detail_semakan', compact('id', 'page_title', 'input_nama'));
-    });
+    // Route standard untuk proses CRUD (Create Read Update Delete)
+    Route::get('/', [SemakanController::class, 'index']);
+    Route::get('/baru', [SemakanController::class, 'create']);
+    Route::post('/baru', [SemakanController::class, 'store']);
+    Route::get('/{id}', [SemakanController::class, 'edit']);
+    Route::patch('/{id}', [SemakanController::class, 'update']);
+    Route::delete('/{id}', [SemakanController::class, 'destroy']);
 
 });
 

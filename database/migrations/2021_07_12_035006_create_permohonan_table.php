@@ -13,7 +13,7 @@ class CreatePermohonanTable extends Migration
      */
     public function up()
     {
-        Schema::create('permohonan', function (Blueprint $table) {
+        Schema::create('permohonans', function (Blueprint $table) {
             $table->id();
             $table->string('nama_pemohon');
             $table->string('jawatan_pemohon');

@@ -13,7 +13,7 @@ class PermohonanController extends Controller
         // $senaraiPermohonan = DB::table('permohonan')->get();
         // Fungsi Pagination - limitkan data dipaparkan pada 1 page
         // $senaraiPermohonan = DB::table('permohonan')->paginate(2);
-        $senaraiPermohonan = DB::table('permohonan')
+        $senaraiPermohonan = DB::table('permohonans')
         ->where('harga_belian', '>', 0)
         ->paginate(2);
         // dd($senaraiPermohonan);
@@ -54,8 +54,8 @@ class PermohonanController extends Controller
         // return $data;
         // die and dump data
         // dd($data)
-        // Simpan $data ke dalam table permohonan
-        DB::table('permohonan')->insert($data);
+        // Simpan $data ke dalam table permohonans
+        DB::table('permohonans')->insert($data);
 
         // Bagi response setelah selesai simpan data
         // return 'Rekod berjaya disimpan';
@@ -64,9 +64,9 @@ class PermohonanController extends Controller
 
     public function edit($id)
     {
-        // Dapatkan data daripad table permohonan berdasarkan ID dan limit 1
+        // Dapatkan data daripad table permohonans berdasarkan ID dan limit 1
         // rekod sahaja
-        $item = DB::table('permohonan')->where('id', '=', $id)->first();
+        $item = DB::table('permohonans')->where('id', '=', $id)->first();
 
         return view('template_permohonan/edit', compact('item'));
     }
@@ -93,8 +93,8 @@ class PermohonanController extends Controller
         // return $data;
         // die and dump data
         // dd($data)
-        // Simpan $data ke dalam table permohonan
-        DB::table('permohonan')->where('id', '=', $id)->update($data);
+        // Simpan $data ke dalam table permohonans
+        DB::table('permohonans')->where('id', '=', $id)->update($data);
 
         // Bagi response setelah selesai simpan data
         // return 'Rekod berjaya disimpan';
@@ -103,7 +103,7 @@ class PermohonanController extends Controller
 
     public function destroy($id)
     {
-        DB::table('permohonan')->where('id', '=', $id)->delete();
+        DB::table('permohonans')->where('id', '=', $id)->delete();
 
         return redirect('/permohonan');
     }
