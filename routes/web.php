@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PermohonanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,14 +26,19 @@ Route::get('login', [LoginController::class, 'paparBorangLogin']);
 Route::get('dashboard', function () {
     return 'Ini adalah halaman dashboard';
 });
+// Route untuk memaparkan senarai permohonan
+Route::get('permohonan', [PermohonanController::class, 'senarai']);
+// Route untuk paparkan borang permohonan
+Route::get('permohonan/baru', [PermohonanController::class, 'paparBorang']);
+// Routing untuk laravel 7 dan ke bawah
+// Route::get('permohonan/baru', 'App\Http\Controller\PermohonanController@paparBorang');
+Route::post('permohonan/baru', [PermohonanController::class, 'simpanData']);
+// Route untuk edit permohonan
+Route::get('permohonan/{id}', [PermohonanController::class, 'edit'])->where('id', '[0-9]+');
+Route::patch('permohonan/{id}', [PermohonanController::class, 'update']);
+Route::delete('permohonan/{id}', [PermohonanController::class, 'destroy']);
 
-Route::get('permohonan', function () {
-    return 'Ini adalah halaman permohonan';
-});
 
-Route::get('permohonan/{id}', function($id) {
-    return 'Ini adalah halaman detail permohonan ID: ' . $id;
-})->where('id', '[0-9]+');
 
 Route::group(['prefix' => 'semakan'], function() {
 
